@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang = en>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    {% load static %}
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href="{% static 'style.css' %}">
+    <script src='main.js'></script>
+</head>
+<body>
+    <div id="wrapper">
+        <h1>All the Users</h1>
+        <table>
+            <tr>
+                <th><h3>First Name</h3></th>
+                <th><h3>Last Name</h3></th>
+                <th><h3>Email</h3></th>
+                <th><h3>Age</h3></th>
+            </tr>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.first_name }}</td>
+                <td>{{ user.last_name }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.age }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <h1>Add a User</h1>
+        <form action="/processuser" method="POST">
+        {%csrf_token %}
+            <label for="first_name">First Name</label>
+            <input type="text" id="first_name" name="first_name">
+            <label for="last_name">Last Name</label>
+            <input type="text" id="last_name" name="last_name">
+            <label for="email">Email</label>
+            <input type="text" id="email" name="email">
+            <label for="age">Age</label>
+            <input type="text" id="age" name="age">
+            <button>Submit</button>
+        </form>
+    </div>
+</body>
+</html>

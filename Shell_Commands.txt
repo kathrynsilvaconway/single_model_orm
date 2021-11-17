@@ -1,0 +1,48 @@
+>>> from users_app.models import *
+>>> User.objects.create(first_name="Steve", last_name="Jobs", email="blah@blah.com", age="2")
+<User: User object (1)>
+>>> User.objects.create(first_name="John", last_name="Cleese", email=Woofh@blah.com", age="7")
+  File "<console>", line 1
+    User.objects.create(first_name="John", last_name="Cleese", email=Woofh@blah.com", age="7")
+                                                                                          ^
+SyntaxError: invalid syntax
+>>> User.objects.create(first_name="John", last_name="Cleese", email="moo@blah.com", age="14")
+<User: User object (2)>
+>>> User.objects.create(first_name="Justin", last_name="Bieber", email="woof@blah.com", age="87")
+<User: User object (3)>
+>>>
+
+>>> User1 = User.objects.get(id=1)
+>>> User1.first_name
+'Steve'
+>>>
+
+>>> User.objects.first()
+<User: User object (1)>
+>>> User.objects.last()
+<User: User object (3)>
+>>>
+
+>>> User_to_Update = User.objects.get(id=3)
+>>> User_to_Update.last_name = "Pancakes"
+>>> User_to_Update.save()
+>>> User_to_update.last_name
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'User_to_update' is not defined
+>>> User_to_update.last_name
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'User_to_update' is not defined
+>>> User_to_Update.last_name
+'Pancakes'
+
+>>> User_to_Delete = User.objects.get(id=2)
+>>> User_to_Delete.delete()
+(1, {'users_app.User': 1})
+>>>
+
+>>> User.objects.all().order_by("first_name")
+<QuerySet [<User: User object (3)>, <User: User object (1)>]>
+>>>
+
